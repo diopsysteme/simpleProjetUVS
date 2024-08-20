@@ -10,13 +10,13 @@ function getCompteurByNumero($numero) {
     return $stmt->get_result()->fetch_assoc();
 }
 
-function addCompteur($numero, $id_client) {
-    global $conn;
-    $sql = "INSERT INTO compteur (numero, id_client) VALUES (?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("si", $numero, $id_client);
-    return $stmt->execute();
-}
+// function addCompteur($numero, $id_client) {
+//     global $conn;
+//     $sql = "INSERT INTO compteur (numero, id_client) VALUES (?, ?)";
+//     $stmt = $conn->prepare($sql);
+//     $stmt->bind_param("si", $numero, $id_client);
+//     return $stmt->execute();
+// }
 
 function getCompteursByClientId($id_client) {
     global $conn;

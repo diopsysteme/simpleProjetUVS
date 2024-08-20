@@ -1,10 +1,10 @@
+
 <style>
     <?php
     require_once "style.css";
     ?>
 </style>
 <?php
-
 require_once '../config/config.php';
 require_once '../models/AgentModel.php';
 require_once '../models/ClientModel.php';
@@ -27,7 +27,8 @@ $views = [
     'agent_dashboard' => '../views/agent/dashboard.php',
     'upload_releve' => '../views/agent/upload_releve.php',
     'client_releves' => '../views/agent/releves_client.php',
-    'client_reclamations' => '../views/agent/reclamations_client.php'
+    'client_reclamations' => '../views/agent/reclamations_client.php',
+    'create_user' => '../views/agent/register_client.php' // Nouvelle route pour la création d'utilisateur
 ];
 
 // Fonction pour vérifier l'accès à une route spécifique
@@ -41,13 +42,12 @@ function checkAccess($route) {
         return isAuthenticated() && $role === 'client'; // Accès pour les clients
     }
 
-    if (in_array($route, ['agent_dashboard', 'upload_releve'])) {
-        return isAuthenticated() && $role === 'agent'; // Accès pour les agents
+    if (in_array($route, ['agent_dashboard', 'upload_releve', 'create_user'])) {
+        return isAuthenticated() && $role === 'agent'; // Accès pour les agents, incluant la nouvelle route
     }
 
-    // Accès pour les nouvelles routes client_releves et client_reclamations
     if (in_array($route, ['client_releves', 'client_reclamations'])) {
-        return isAuthenticated() && $role === 'agent'; // Supposition que seuls les agents peuvent voir ces pages
+        return isAuthenticated() && $role === 'agent'; // Accès pour les agents
     }
 
     return false; // Accès refusé par défaut
@@ -65,3 +65,4 @@ if (array_key_exists($route, $views) && checkAccess($route)) {
     header('Location: ../public/index.php?route=login');
     exit;
 }
+?>

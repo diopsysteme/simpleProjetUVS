@@ -13,15 +13,13 @@
             <thead>
                 <tr>
                     <th>Date</th>
-                    <th>Objet</th>
                     <th>Description</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($reclamations as $reclamation): ?>
+                <?php foreach (getReclamationsByClientId($_GET['id']) as $reclamation): ?>
                 <tr>
                     <td><?php echo htmlspecialchars($reclamation['date']); ?></td>
-                    <td><?php echo htmlspecialchars($reclamation['objet']); ?></td>
                     <td><?php echo htmlspecialchars($reclamation['description']); ?></td>
                 </tr>
                 <?php endforeach; ?>

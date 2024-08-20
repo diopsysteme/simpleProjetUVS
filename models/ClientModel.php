@@ -18,14 +18,23 @@ function getClientById($id) {
     return $stmt->get_result()->fetch_assoc();
 }
 
-function addClient($nom, $prenom, $email, $telephone, $mot_de_passe) {
+function addClient($nom, $prenom, $email, $telephone, $mot_de_passe,$role) {
+    var_dump("kshd");
     global $conn;
     $hashed_password = password_hash($mot_de_passe, PASSWORD_DEFAULT);
-    $sql = "INSERT INTO client (nom, prenom, email, telephone, mot_de_passe) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO user (nom, prenom, email, telephone, mot_de_passe,role) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssss", $nom, $prenom, $email, $telephone, $hashed_password);
+    $stmt->bind_param("ssssss", $nom, $prenom, $email, $telephone, $hashed_password,$role);
     return $stmt->execute();
 }
+function addCompteur($client_id, $compteur) {
+    global $conn;
+    $sql = "INSERT INTO compteur (id_user, numero) VALUES (?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("is", $client_id, $compteur);
+    return $stmt->execute();
+}
+
 function getAllClients() {
     global $conn;
     $query = "SELECT id, nom, prenom, email, telephone FROM user where role='client'";
@@ -53,7 +62,7 @@ function getRelevesByClientId($clientId) {
 }
 function getReclamationsByClientId($clientId) {
     global $conn;
-    $sql = "SELECT * FROM reclamation WHERE id_client = ?";
+    $sql = "SELECT * FROM reclamation WHERE id_user = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $clientId); // Assuming $clientId is an integer
     $stmt->execute();

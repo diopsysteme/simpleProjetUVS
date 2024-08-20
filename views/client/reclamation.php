@@ -6,9 +6,10 @@
 </head>
 <body>
     <h2>Réclamation</h2>
-    <form method="POST" action="../../controllers/ReclamationController.php">
+    <form method="POST" action="../controllers/ReclamationController.php">
         <textarea name="description" placeholder="Décrivez votre réclamation" required></textarea>
-        <button type="submit" name="submit_reclamation">Soumettre</button>
+        
+        <button type="submit" name="submit_reclamation" value="<?=$_GET["idReleve"]?>">Soumettre</button>
     </form>
 </body>
 </html>

@@ -6,13 +6,13 @@
     <title>Tableau de Bord de l'Agent</title>
     <link rel="stylesheet" href="../../public/style.css">
 </head>
-<?php print_r($_SESSION);
-?>
 <body>
     <header>
         <h1>Tableau de Bord de l'Agent</h1>
         <nav>
             <a href="index.php?route=upload_releve">Télécharger les Relevés</a>
+            <!-- Lien pour la création d'un utilisateur -->
+            <a href="index.php?route=create_user">Créer un Utilisateur</a>
         </nav>
     </header>
     <main>
@@ -25,7 +25,7 @@
                     <th>Prénom</th>
                     <th>Email</th>
                     <th>Téléphone</th>
-                    <th>Actions</th> <!-- Nouvelle colonne pour les actions -->
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,7 +35,7 @@
                     <td><?php echo htmlspecialchars($client['nom']); ?></td>
                     <td><?php echo htmlspecialchars($client['prenom']); ?></td>
                     <td><?php echo htmlspecialchars($client['email']); ?></td>
-                    <td><?php echo htmlspecialchars($client['telephone']); ?></td>^
+                    <td><?php echo htmlspecialchars($client['telephone']); ?></td>
                     <td>
                         <!-- Bouton Détails pour les relevés -->
                         <a href="index.php?route=client_releves&id=<?php echo htmlspecialchars($client['id']); ?>" class="button">Voir Relevés</a>

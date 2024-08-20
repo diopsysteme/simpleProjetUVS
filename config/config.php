@@ -144,20 +144,20 @@ function envoyerEmailAvecPDF($email, $objet, $message, $pdfContent) {
         $mail->Subject = $objet;
         $mail->Body = $message;
 
-        // Ajouter le PDF en pièce jointe
-        $mail->addStringAttachment($pdfContent, 'facture.pdf');
+            $mail->addStringAttachment($pdfContent, 'facture.pdf');
 
-        // Envoyer l'e-mail
         $mail->send();
     } catch (Exception $e) {
         echo "Le message n'a pas pu être envoyé. Erreur: {$mail->ErrorInfo}";
     }
 }
 function excelDateToDateTime($excelDate) {
-    // Date de référence pour Excel : 1er janvier 1900
-    $unixDate = ($excelDate - 25569) * 86400; // 25569 est le nombre de jours entre 1900-01-01 et 1970-01-01
+    $unixDate = ($excelDate - 25569) * 86400; 
     $date = gmdate("Y-m-d", $unixDate);
     return $date;
+}
+function generateUniqueCompteur() {
+    return uniqid('CMPTR_');
 }
 
 

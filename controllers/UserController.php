@@ -12,8 +12,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
         $_SESSION['user'] = $agent['id'];
         $_SESSION['role'] = $agent['role'];
         print_r($_SESSION);
-        if($agent['role']=="client")
+        if($agent['role']=="client"){
             header("Location:../public/index.php?route=dashboard");
+            die();
+        }
+        
         header('Location:../public/index.php?route=agent_dashboard');
     } else {
         $_SESSION["errorLogin"] ="Incorrect username or password";
