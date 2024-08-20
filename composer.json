@@ -1,0 +1,19 @@
+{
+    "name": "mhd/distribution_factures",
+    "autoload": {
+        "psr-4": {
+            "Mhd\\DistributionFactures\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "diopsysteme",
+            "email": "mhdtnboss@gmail.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^2.2",
+        "phpmailer/phpmailer": "^6.9",
+        "tecnickcom/tcpdf": "^6.7"
+    }
+}
